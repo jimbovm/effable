@@ -1,35 +1,32 @@
 (in-package epub-meta)
 
-(setq epub-namespace nil)
-(setq dc-namespace "dc")
+(setq *epub-namespace* nil)
+(setq *dc-namespace* "dc")
 
-(seml:make-element epub-namespace package)
-(seml:make-element epub-namespace manifest)
-(seml:make-element epub-namespace metadata)
-(seml:make-empty-element epub-namespace item)
-(seml:make-element epub-namespace guide)
-(seml:make-element epub-namespace reference)
-(seml:make-element epub-namespace spine)
-(seml:make-element epub-namespace idref)
+(make-element *epub-namespace* package)
+(make-element *epub-namespace* manifest)
+(make-element *epub-namespace* metadata)
+(make-empty-element *epub-namespace* item)
+(make-element *epub-namespace* guide)
+(make-element *epub-namespace* reference)
+(make-element *epub-namespace* spine)
+(make-element **epub-namespace** idref)
 
-(defun make-dc-element (field content &optional role)
-	(if (not (equal field "contributor"))
-		(seml:element field nil dc-namespace
-			content
-		)
-		(seml:element field `(("role" . ,role)) dc-namespace
-			content
-		)
-	)
-)
+(make-element *dc-namespace* creator)
+(make-element *dc-namespace* identifier)
+(make-element *dc-namespace* language)
+(make-element *dc-namespace* title)
 
 (defun make-dc-metadata (desc)
-	(metadata `(("xmlns:dc" . "http://purl.org/dc/elements/1.1/") ("xmlns:opf" . "http://www.idpf.org/2007/opf"))
-		(make-dc-element "title" (dc-title desc))
-		(make-dc-element "creator" (dc-creator desc))
-		(make-dc-element "language" (dc-language desc))
-		(make-dc-element "title" (dc-title desc))
-		(make-dc-element "identifier" (dc-identifier desc))
+	(metadata
+  	(attributes
+           nil "xmlns:dc" "http://purl.org/dc/elements/1.1/"
+           nil "xmlns:opf" "http://www.idpf.org/2007/opf")
+		(title nil (dc-title desc))
+		(creator nil (concatenate 'string (person-given-name (dc-creator desc)) " " (person-family-name (dc-creator desc))))
+		(language nil (dc-language desc))
+		(title nil (dc-title desc))
+		(identifier nil (dc-identifier desc))
 	)
 )
 

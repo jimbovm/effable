@@ -121,6 +121,9 @@
 	(:export dc-type)
 	(:export dc-email)
 	(:export dc-phone)
+	(:export person)
+	(:export person-given-name)
+	(:export person-family-name)
 )
 (load "rdf.lisp")
 
@@ -303,6 +306,7 @@
 
 (defpackage epub-meta
 	(:use cl)
+	(:use seml)
 	(:use semantrix)
 	(:shadow package)
 	(:export package)
@@ -331,6 +335,7 @@
 	(:use effable-ml)
 	(:use epub-meta)
 	(:import-from epub-meta description)
+	(:import-from epub-meta person)
 	(:import-from epub-meta make-dc)
 	(:import-from semantrix dc-p)
 	(:import-from epub-meta dc-creator)
@@ -346,6 +351,7 @@
 	(:import-from epub-meta dc-subject)
 	(:import-from epub-meta dc-title)
 	(:import-from epub-meta dc-type)
+	(:import-from epub-meta make-dc-metadata)
 	(:shadowing-import-from epub-meta package)
 	(:export chapter)
 	(:export title-page)
