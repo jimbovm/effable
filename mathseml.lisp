@@ -9,6 +9,7 @@
 (make-element prefix mrow)
 (make-element prefix msup)
 (make-element prefix msub)
+(make-element prefix munderover)
 (make-element prefix mi)
 (make-element prefix mo)
 (make-element prefix mn)
@@ -60,13 +61,30 @@
 
 (defmacro root (index &body args)
 	(cond
-		((equal index 2) `(msqrt (mapcar #'format-term (list ,@args))))
-		(t `(mroot (mapcar #'format-term (list ,@args)) (format-term ,index)))
+		((equal index 2) `(msqrt nil (mapcar #'format-term (list ,@args))))
+		(t `(mroot nil (mapcar #'format-term (list ,@args)) (format-term ,index)))
 	)
 )
 
 (defmacro abs (&body args)
 	`(list (mo nil "|") ,@args (mo nil "|"))
+)
+
+; Summations and products
+(defmacro summation (from to &body args)
+  `(list
+		(mrow nil
+      (munderover nil "&Sigma;" ; ∑
+          (mrow nil (format-term ,from)) (mrow nil (format-term ,to)))
+      ,@args))
+)
+
+(defmacro product (from to &body args)
+  `(list
+		(mrow nil
+      (munderover nil "&Pi;"
+          (mrow nil (format-term ,from)) (mrow nil (format-term ,to)))
+      ,@args))
 )
 
 ; Logical connectives and predicates...
