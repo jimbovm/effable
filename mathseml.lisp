@@ -70,7 +70,7 @@
 	`(list (mo nil "|") ,@args (mo nil "|"))
 )
 
-; Summations and products
+; Summations and products...
 (defmacro summation (from to &body args)
   `(list
 		(mrow nil
@@ -96,6 +96,10 @@
 	`(reduce (lambda (lhs rhs) (list (format-term lhs) (mo nil "&or;") (format-term rhs))) (list ,@args) :from-end t)
 )
 
+(defmacro xor (&body args)
+	`(reduce (lambda (lhs rhs) (list (format-term lhs) (mo nil "&oplus;") (format-term rhs))) (list ,@args) :from-end t)
+)
+&oplus;
 (defun not (term)
 	(list (mo nil "&not;") (mfenced (mrow nil (format-term term))))
 )
