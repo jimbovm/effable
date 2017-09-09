@@ -9,4 +9,6 @@ Effable tries to put all these solutions at authors’ fingertips, and thanks to
 
 A central design goal of Effable is semantic awareness. As much machine-readable metadata as possible should be automatically generated without any onerous duplication of effort by the user. A doctrine of “semantic umami”, modelled after the term syntactic sugar, is intended to make as much document structure and metadata as possible /inherent/ in the Effable format itself.
 
+Components of Effable, such as the mathseml package which makes writing MathML easy using a high-level Lisp S-expression syntax, are usable by themselves.
+
 At present Effable is quite usable, but its syntax is not especially stable and subject to change.
