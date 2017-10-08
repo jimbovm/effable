@@ -76,9 +76,11 @@
 					(dc-date ,dc-desc)
 				)
 			))
-			; The abstract, and then the main content, follows.
+			; The abstract (if there is one) and then the main content follows.
 			(htseml:main nil
-				(abstract (dc-summary ,dc-desc))
+				(if (cl:not (equalp (dc-summary ,dc-desc) ""))
+					(abstract (dc-summary ,dc-desc))
+      		"")
 				,@content
 			)
 		)
