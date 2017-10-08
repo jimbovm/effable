@@ -60,9 +60,6 @@
 					)
 					(person-telephone (dc-creator ,dc-desc))
 				)
-				(htseml:p	(attributes nil "class" "nationality")
-          (mapcar (lambda (nation) (htseml:span (attributes nil "itemprop" "nationality") nation))
-          	(person-nationality (dc-creator ,dc-desc))))
 				(htseml:p
 					(attributes
 						nil "class" "github"
