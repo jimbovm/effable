@@ -1,7 +1,7 @@
 (in-package seml)
 
 ; THE MAIN CAST.
-; 
+;
 ; THE ELEMENT MACRO. The don of the whole operation. A versatile fellow who is
 ; capable of putting on a thin costume to play the role of any sort of
 ; nonempty XML element.
@@ -73,8 +73,8 @@
 			(content (if (stringp (third triple)) (third triple) (write-to-string (third triple))))
 		)
 		(if (not (null (first triple)))
-				(concatenate 'string " " (first triple) ":" (second triple) "='" content "'")
-				(concatenate 'string " " (second triple) "='" content "'")
+				(concatenate 'string " " (first triple) ":" (second triple) "=\"" content "\"")
+				(concatenate 'string " " (second triple) "=\"" content "\"")
 		)
 	)
 )
@@ -109,7 +109,7 @@
 )
 
 
-; THE PRINTER FUNCTIONS. These fellas deal with printing out trees of XML in 
+; THE PRINTER FUNCTIONS. These fellas deal with printing out trees of XML in
 ; a format suitable for something other than Lisp to deal with.
 
 (defun make-indent (depth) (make-string depth :initial-element #\tab))
@@ -125,7 +125,7 @@
 		)
 	)
 )
-	
+
 (defun print-tree (depth tree out-file)
 	(mapcar
 		(lambda (elem)
