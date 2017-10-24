@@ -94,7 +94,9 @@
 		,@content))
 
 (defmacro li (&body content)
-	`(sodf:list-item nil (sodf:p (attributes "text" "style-name" "Text Body") ,@content)))
+	`(etypecase ,@content
+		(string (sodf:list-item nil (sodf:p (attributes "text" "style-name" "Text Body") ,@content)))
+		(cons (cl:list (sodf:list-item nil (sodf:p (attributes "text" "style-name" "Text Body") (sodf:s nil)) ,@content)))))
 
 ; analogous to effable-ml's hltd
 (defun hlcell (cell)

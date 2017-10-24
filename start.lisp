@@ -404,6 +404,7 @@
 	(:shadow text) (:export text)
 	(:export p)
 	(:export h)
+	(:export s)
 	(:export span)
 	(:shadow ruby) (:export ruby)
 	(:export ruby-base)
