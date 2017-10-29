@@ -6,6 +6,8 @@
 ; These are the primitives, which map directly to MathML elements.
 
 (make-element prefix math)
+(make-element prefix semantics)
+(make-element prefix annotation)
 (make-element prefix mrow)
 (make-element prefix msup)
 (make-element prefix msub)

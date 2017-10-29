@@ -222,12 +222,21 @@
 	)
 )
 
+(defmacro $ (&body content)
+	`(htseml:span
+		(attributes
+			nil "class" "equation"
+		)
+		(mathseml:math nil ,@content)
+	)
+)
+
 (defmacro equation (caption &body content)
 	`(htseml:div
 		(attributes
 			nil "class" "equation"
 		)
-		,@content
+		(mathseml:math nil ,@content)
 		(htseml:p
 			(attributes
 				nil "class" "caption"
